@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mind-Navigator</string>
+    <string name="app_name">Mind-Navigator application</string>
     <string name="month">Month</string>
     <string name="year">Year</string>
     <string name="previous_month">Previous month</string>
