@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Mind-Navigator</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="previous_month">Previous month</string>
+    <string name="next_month_arrow">Next month arrow</string>
+    <string name="sunday">Sun</string>
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sat</string>
+    <string name="dummy">dummy</string>
+</resources>
