@@ -6,6 +6,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp" />
+
     <LinearLayout
         android:id="@+id/one"
         android:layout_width="match_parent"
@@ -17,7 +24,7 @@
             android:id="@+id/button_left_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="40dp"
             android:background="@color/white"
             android:contentDescription="@string/previous_month"
             android:onClick="navPrevWeekClick"
@@ -34,6 +41,7 @@
                 android:id="@+id/header_month_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:onClick="selectMonth"
                 android:text="@string/month"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -44,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
+                android:onClick="selectYear"
                 android:text="@string/year"
                 android:textColor="@color/black"
                 android:textSize="15sp"
@@ -55,6 +64,7 @@
             android:id="@+id/button_right_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
             android:background="@color/white"
             android:contentDescription="@string/next_month_arrow"
             android:onClick="navNextWeekClick"

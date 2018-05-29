@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#fff</color>
+    <color name="colorPrimaryDark">#E9E9E9</color>
+    <color name="colorAccent">#0064DB</color>
+
+
     <color name="white">#FFF</color>
     <color name="black">#000</color>
+    <color name="grey">#797A7D</color>
     <color name="event_text_color">#1b443b</color>
     <color name="red">#FF0000</color>
     <color name="pink">#ff4081</color>
-    <color name="burgundy">#800020</color>
+    <color name="burgundy">#b33</color>
+
 
     <!-- stress levels colors by levels -->
-    <color name="slvl0_color">#990</color>
-    <color name="slvl1_color">#f48</color>
-    <color name="slvl2_color">#4ac</color>
-    <color name="slvl3_color">#0ff</color>
+    <color name="slvl0_color">#683</color>
+    <color name="slvl1_color">#088</color>
+    <color name="slvl2_color">#dc5</color>
+    <color name="slvl3_color">#fa3</color>
+    <color name="slvl4_color">#a44</color>
 </resources>

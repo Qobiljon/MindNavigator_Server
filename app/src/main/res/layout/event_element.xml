@@ -10,4 +10,5 @@
     android:maxLines="1"
     android:text="@string/dummy"
     android:textSize="9sp"
-    tools:ignore="SmallSp" />
+    tools:ignore="SmallSp"
+    android:textColor="@color/white"/>

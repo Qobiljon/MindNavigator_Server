@@ -25,18 +25,15 @@ public class Tools {
     public static void addEvent(Activity activity, ViewGroup parent, Event event) {
         activity.getLayoutInflater().inflate(R.layout.event_element, parent);
         TextView res = (TextView) parent.getChildAt(parent.getChildCount() - 1);
-
         res.setBackgroundColor(event.getStressColor());
         res.setText(event.getTitle());
     }
 }
 
 class Event {
-
     Event(String title, int stressLevel) {
         setTitle(title);
         setStressLevel(stressLevel);
-
         id = System.currentTimeMillis() / 1000;
     }
 
@@ -45,18 +42,19 @@ class Event {
         stressColors[1] = activity.getColor(R.color.slvl1_color);
         stressColors[2] = activity.getColor(R.color.slvl2_color);
         stressColors[3] = activity.getColor(R.color.slvl3_color);
+        stressColors[4] = activity.getColor(R.color.slvl4_color);
     }
 
     //region Variables
     @ColorInt
-    private static int[] stressColors = new int[4];
+    private static int[] stressColors = new int[5];
 
     private long id;
     private int stressLevel;
     private String title;
     //endregion
 
-    public void setStressLevel(int stressLevel) {
+    private void setStressLevel(int stressLevel) {
         this.stressLevel = stressLevel;
     }
 

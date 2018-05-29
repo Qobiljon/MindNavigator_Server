@@ -3,6 +3,9 @@ package kr.ac.inha.nsl.mindnavigator;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar mTopToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(mTopToolbar);
 
         init();
         Event.init(this);
@@ -136,5 +142,25 @@ public class MainActivity extends AppCompatActivity {
         cal.set(Calendar.YEAR, year);
         cal.set(Calendar.DAY_OF_MONTH, 1);
         return cal.get(Calendar.DAY_OF_WEEK);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public void todayClick(MenuItem item) {
+        currentCal = Calendar.getInstance();
+        updateCalendarView();
+    }
+
+    public void settingsClick(MenuItem item) {
+    }
+
+    public void selectMonth(View view) {
+    }
+
+    public void selectYear(View view) {
     }
 }

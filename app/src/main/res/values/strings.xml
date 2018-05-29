@@ -12,4 +12,21 @@
     <string name="friday">Fri</string>
     <string name="saturday">Sat</string>
     <string name="dummy">dummy</string>
+    <string name="today">Today</string>
+    <string name="settings">Settings</string>
+
+    <string-array name="months_array">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
 </resources>
