@@ -2,6 +2,8 @@ package kr.ac.inha.nsl.mindnavigator;
 
 import android.annotation.SuppressLint;
 import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -40,7 +42,15 @@ public class MainActivity extends AppCompatActivity {
             Calendar selectedDay = Calendar.getInstance();
             selectedDay.setTimeInMillis((long) view.getTag());
 
-            Toast.makeText(MainActivity.this, String.format(Locale.US, "Cell is clicked, date: %02d/%02d/%d", selectedDay.get(Calendar.DAY_OF_MONTH), selectedDay.get(Calendar.MONTH) + 1, selectedDay.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+            if (prev != null) {
+                ft.remove(prev);
+            }
+            ft.addToBackStack(null);
+            DialogFragment dialogFragment = new EventsListDialog(MainActivity.this, selectedDay);
+            dialogFragment.show(ft, "dialog");
+
         }
     };
     // endregion
@@ -210,8 +220,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void settingsClick(MenuItem item) {
-        DialogFragment editViewDialog = new DialogFragment();
-        editViewDialog.show(getFragmentManager(), "Events-list-dialog");
+
     }
 
     public void selectMonth(View view) {
