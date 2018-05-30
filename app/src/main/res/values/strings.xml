@@ -23,9 +23,9 @@
     <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="cell_date">Cell date</string>
     <string name="low">LOW</string>
     <string name="high">HIGH</string>
+    <string name="btn_close">Close</string>
 
     <string-array name="months_array">
         <item>Jan</item>

@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +17,9 @@ import android.view.ViewTreeObserver;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,7 +59,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar mTopToolbar = findViewById(R.id.my_toolbar);
+        mTopToolbar.setTitle("MindNavigator");
+        mTopToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mTopToolbar);
+
 
         Event.init(this);
         init();
@@ -222,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void settingsClick(MenuItem item) {
-
     }
 
     public void selectMonth(View view) {

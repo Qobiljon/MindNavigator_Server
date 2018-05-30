@@ -2,7 +2,6 @@ package kr.ac.inha.nsl.mindnavigator;
 
 import android.app.Activity;
 import android.support.annotation.ColorInt;
-import android.support.annotation.LayoutRes;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -104,7 +103,7 @@ class Event {
         this.startTime = (Calendar) startTime.clone();
     }
 
-    private Calendar getStartTime() {
+    public Calendar getStartTime() {
         return startTime;
     }
 
@@ -114,12 +113,16 @@ class Event {
         this.endTime = (Calendar) endTime.clone();
     }
 
-    private Calendar getEndTime() {
+    public Calendar getEndTime() {
         return endTime;
     }
 
     private void setStressLevel(int stressLevel) {
         this.stressLevel = stressLevel;
+    }
+
+    public int getStressLevel(){
+        return stressLevel;
     }
 
     public void setTitle(String title) {
