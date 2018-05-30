@@ -18,12 +18,14 @@
     <string name="event_start_time">Start time</string>
     <string name="event_end_time">End time</string>
     <string name="stress_lvl">Stress level</string>
-    <string name="event_note">Event note</string>
+    <string name="event_note">Event note (optional)</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="cell_date">Cell date</string>
+    <string name="low">LOW</string>
+    <string name="high">HIGH</string>
 
     <string-array name="months_array">
         <item>Jan</item>

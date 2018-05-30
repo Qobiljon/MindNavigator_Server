@@ -2,14 +2,12 @@ package kr.ac.inha.nsl.mindnavigator;
 
 import android.app.Activity;
 import android.support.annotation.ColorInt;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class Tools {
     // region Variables

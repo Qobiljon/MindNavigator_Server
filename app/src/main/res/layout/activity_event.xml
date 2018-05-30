@@ -120,13 +120,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:gravity="center">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:layout_weight="1"
             android:labelFor="@+id/progressBar"
             android:text="@string/stress_lvl"
             android:textColor="#000"
@@ -134,13 +134,43 @@
             android:textStyle="bold"
             android:typeface="monospace" />
 
-        <SeekBar
-            android:id="@+id/stressLvl"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:max="4" />
+            android:layout_margin="5dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:labelFor="@+id/progressBar"
+                android:text="@string/low"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+            <SeekBar
+                android:id="@+id/stressLvl"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:max="4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:labelFor="@+id/progressBar"
+                android:text="@string/high"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
