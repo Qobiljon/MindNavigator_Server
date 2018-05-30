@@ -193,8 +193,7 @@ public class MainActivity extends AppCompatActivity {
                 day.setTimeInMillis((long) cells[col][row].getTag());
                 ArrayList<Event> dayEvents = Event.getOneDayEvents(day);
                 for (Event event : dayEvents) {
-                    Tools.addEvent(this, cells[col][row], event);
-                    Log.e("ERRORNOTE", "ADDING AN EVENT");
+                    Tools.addEvent(this, cells[col][row], event, R.layout.event_element);
                 }
             }
     }

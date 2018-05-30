@@ -2,6 +2,7 @@ package kr.ac.inha.nsl.mindnavigator;
 
 import android.app.Activity;
 import android.support.annotation.ColorInt;
+import android.support.annotation.LayoutRes;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,8 +38,8 @@ public class Tools {
         }
     }
 
-    public static void addEvent(Activity activity, ViewGroup parent, Event event) {
-        activity.getLayoutInflater().inflate(R.layout.event_element, parent);
+    public static void addEvent(Activity activity, ViewGroup parent, Event event, @LayoutRes int inflateRes) {
+        activity.getLayoutInflater().inflate(inflateRes, parent);
         TextView res = (TextView) parent.getChildAt(parent.getChildCount() - 1);
         res.setBackgroundColor(event.getStressColor());
         res.setText(event.getTitle());
