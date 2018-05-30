@@ -37,13 +37,6 @@ public class Tools {
                 grid[row][col].removeViewAt(1);
         }
     }
-
-    public static void addEvent(Activity activity, ViewGroup parent, Event event, @LayoutRes int inflateRes) {
-        activity.getLayoutInflater().inflate(inflateRes, parent);
-        TextView res = (TextView) parent.getChildAt(parent.getChildCount() - 1);
-        res.setBackgroundColor(event.getStressColor());
-        res.setText(event.getTitle());
-    }
 }
 
 class Event {

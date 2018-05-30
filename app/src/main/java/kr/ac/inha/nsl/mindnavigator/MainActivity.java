@@ -193,7 +193,10 @@ public class MainActivity extends AppCompatActivity {
                 day.setTimeInMillis((long) cells[col][row].getTag());
                 ArrayList<Event> dayEvents = Event.getOneDayEvents(day);
                 for (Event event : dayEvents) {
-                    Tools.addEvent(this, cells[col][row], event, R.layout.event_element);
+                    getLayoutInflater().inflate(R.layout.event_element, cells[col][row]);
+                    TextView res = (TextView) cells[col][row].getChildAt(cells[col][row].getChildCount() - 1);
+                    res.setBackgroundColor(event.getStressColor());
+                    res.setText(event.getTitle());
                 }
             }
     }
