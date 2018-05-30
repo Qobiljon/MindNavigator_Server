@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -35,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout.OnClickListener cellClick = new LinearLayout.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis((long) view.getTag());
+            Calendar selectedDay = Calendar.getInstance();
+            selectedDay.setTimeInMillis((long) view.getTag());
 
-            Toast.makeText(MainActivity.this, String.format(Locale.US, "Cell is clicked, date: %02d/%02d/%d", cal.get(Calendar.DAY_OF_MONTH), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, String.format(Locale.US, "Cell is clicked, date: %02d/%02d/%d", selectedDay.get(Calendar.DAY_OF_MONTH), selectedDay.get(Calendar.MONTH) + 1, selectedDay.get(Calendar.YEAR)), Toast.LENGTH_SHORT).show();
         }
     };
     // endregion
@@ -52,8 +54,28 @@ public class MainActivity extends AppCompatActivity {
         Toolbar mTopToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(mTopToolbar);
 
-        init();
         Event.init(this);
+        init();
+
+        // region Add fake events
+        Calendar startTime = Calendar.getInstance(), endTime = Calendar.getInstance();
+
+        startTime.set(Calendar.MINUTE, 0);
+        endTime.set(Calendar.MINUTE, 30);
+        new Event("UCL final match", 3, startTime, endTime);
+
+        startTime.add(Calendar.HOUR, 1);
+        endTime.add(Calendar.HOUR, 1);
+        new Event("Movie with Debbie", 0, startTime, endTime);
+
+        startTime.add(Calendar.DAY_OF_MONTH, 1);
+        endTime.add(Calendar.DAY_OF_MONTH, 1);
+        new Event("NSL meeting", 2, startTime, endTime);
+
+        startTime.add(Calendar.DAY_OF_MONTH, 1);
+        endTime.add(Calendar.DAY_OF_MONTH, 1);
+        new Event("Shopping", 1, startTime, endTime);
+        // endregion
     }
 
     private void init() {
@@ -137,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     cells[col][row].setTag(clone.getTimeInMillis());
                 }
             } else
-                for (col = 0; count < numOfDaysCurMonth && col < event_grid.getColumnCount(); col++, count++) {
+                for (col = 0; count <= numOfDaysCurMonth && col < event_grid.getColumnCount(); col++, count++) {
                     TextView date_text = cells[col][row].findViewById(R.id.date_text_view);
                     date_text.setText(String.valueOf(count));
 
@@ -155,19 +177,15 @@ public class MainActivity extends AppCompatActivity {
             cells[col][row].setTag(clone.getTimeInMillis());
         }
 
-        // Add fake events
-        Event events[] = new Event[]{
-                new Event("UCL final match", 3),
-                new Event("Movie with Debbie", 0),
-                new Event("NSL meeting", 2),
-                new Event("Shopping", 1)
-        };
         for (row = 0; row < event_grid.getRowCount(); row++)
             for (col = 0; col < event_grid.getColumnCount(); col++) {
-                Tools.addEvent(this, cells[col][row], events[0]);
-                Tools.addEvent(this, cells[col][row], events[1]);
-                Tools.addEvent(this, cells[col][row], events[2]);
-                Tools.addEvent(this, cells[col][row], events[3]);
+                Calendar day = Calendar.getInstance();
+                day.setTimeInMillis((long) cells[col][row].getTag());
+                ArrayList<Event> dayEvents = Event.getOneDayEvents(day);
+                for (Event event : dayEvents) {
+                    Tools.addEvent(this, cells[col][row], event);
+                    Log.e("ERRORNOTE", "ADDING AN EVENT");
+                }
             }
     }
 
@@ -203,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNewEventClick(View view) {
-        Intent intent = new Intent(this, NewEventActivity.class);
+        Intent intent = new Intent(this, EventActivity.class);
         startActivity(intent);
     }
 }

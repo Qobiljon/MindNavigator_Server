@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewEventActivity">
+    tools:context=".EventActivity">
 
 
     <LinearLayout
@@ -17,21 +17,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:labelFor="@+id/txt_event_title"
             android:text="@string/event_title"
             android:textColor="#000"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:typeface="monospace"
-            android:layout_weight="1"/>
+            android:typeface="monospace" />
 
         <EditText
             android:id="@id/txt_event_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:inputType="text"
-            android:maxLines="1"
-            android:layout_weight="2"/>
+            android:maxLines="1" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,13 +44,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:labelFor="@+id/txt_event_start_time"
             android:text="@string/event_start_time"
             android:textColor="#000"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:typeface="monospace"
-            android:layout_weight="1"/>
+            android:typeface="monospace" />
 
         <TextView
             android:id="@+id/txt_event_start_date"
@@ -85,13 +85,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:labelFor="@+id/txt_event_end_time"
             android:text="@string/event_end_time"
             android:textColor="#000"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:typeface="monospace"
-            android:layout_weight="1"/>
+            android:typeface="monospace" />
 
         <TextView
             android:id="@+id/txt_event_end_date"
@@ -126,13 +126,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:labelFor="@+id/progressBar"
             android:text="@string/stress_lvl"
             android:textColor="#000"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:typeface="monospace"
-            android:layout_weight="1"/>
+            android:typeface="monospace" />
 
         <SeekBar
             android:id="@+id/stressLvl"
@@ -153,33 +153,32 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
+            android:layout_weight="1"
             android:labelFor="@+id/txt_event_note"
             android:text="@string/event_note"
             android:textColor="#000"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:typeface="monospace"
-            android:layout_weight="1"/>
+            android:typeface="monospace" />
 
         <EditText
             android:id="@id/txt_event_note"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:ellipsize="end"
             android:inputType="text|textMultiLine"
-            android:maxLines="2"
-            android:layout_weight="2"/>
+            android:maxLines="2" />
     </LinearLayout>
-
 
 
     <LinearLayout
         android:id="@+id/eventActionButtonsContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="5dp"
         android:layout_gravity="end"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal">
 
         <Button

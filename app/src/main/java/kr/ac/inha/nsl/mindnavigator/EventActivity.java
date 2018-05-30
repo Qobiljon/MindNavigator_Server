@@ -8,12 +8,12 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class NewEventActivity extends AppCompatActivity {
+public class EventActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_event);
+        setContentView(R.layout.activity_event);
         ActionBar bar = getSupportActionBar();
         if (bar != null)
             bar.setTitle("Sign up");
@@ -43,7 +43,7 @@ public class NewEventActivity extends AppCompatActivity {
         stressLvl.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Toast.makeText(NewEventActivity.this, String.valueOf(progress), Toast.LENGTH_SHORT).show();
+                Toast.makeText(EventActivity.this, String.valueOf(progress), Toast.LENGTH_SHORT).show();
             }
 
             @Override

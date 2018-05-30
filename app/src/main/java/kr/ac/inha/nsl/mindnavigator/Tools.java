@@ -2,9 +2,14 @@ package kr.ac.inha.nsl.mindnavigator;
 
 import android.app.Activity;
 import android.support.annotation.ColorInt;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Tools {
     // region Variables
@@ -43,10 +48,14 @@ public class Tools {
 }
 
 class Event {
-    Event(String title, int stressLevel) {
+    Event(String title, int stressLevel, Calendar startTime, Calendar endTime) {
         setTitle(title);
         setStressLevel(stressLevel);
+        setStartTime(startTime);
+        setEndTime(endTime);
         id = System.currentTimeMillis() / 1000;
+
+        events.add(this);
     }
 
     public static void init(Activity activity) {
@@ -55,16 +64,67 @@ class Event {
         stressColors[2] = activity.getColor(R.color.slvl2_color);
         stressColors[3] = activity.getColor(R.color.slvl3_color);
         stressColors[4] = activity.getColor(R.color.slvl4_color);
+
+        events.clear();
+    }
+
+    public static ArrayList<Event> getOneDayEvents(Calendar day) {
+        ArrayList<Event> res = new ArrayList<>();
+
+        Calendar comDay = (Calendar) day.clone();
+
+        comDay.set(Calendar.HOUR, 0);
+        comDay.set(Calendar.MINUTE, 0);
+        comDay.set(Calendar.SECOND, 0);
+        comDay.set(Calendar.MILLISECOND, 0);
+        long fromTime = comDay.getTimeInMillis();
+
+        comDay.add(Calendar.DAY_OF_MONTH, 1);
+        comDay.add(Calendar.MINUTE, -1);
+        long toTime = comDay.getTimeInMillis();
+
+        for (Event event : events) {
+            long start = event.getStartTime().getTimeInMillis();
+            long end = event.getEndTime().getTimeInMillis();
+
+            if ((start >= fromTime && start < toTime) || (end >= fromTime && end < toTime))
+                res.add(event);
+        }
+
+        return res;
     }
 
     //region Variables
     @ColorInt
     private static int[] stressColors = new int[5];
+    private static ArrayList<Event> events = new ArrayList<>();
 
     private long id;
     private int stressLevel;
     private String title;
+    private Calendar startTime;
+    private Calendar endTime;
     //endregion
+
+    private void setStartTime(Calendar startTime) {
+        startTime.set(Calendar.SECOND, 0);
+        startTime.set(Calendar.MILLISECOND, 0);
+        this.startTime = (Calendar) startTime.clone();
+    }
+
+    private Calendar getStartTime() {
+        return startTime;
+    }
+
+    private void setEndTime(Calendar endTime) {
+        endTime.set(Calendar.SECOND, 0);
+        endTime.set(Calendar.MILLISECOND, 0);
+        this.endTime = (Calendar) endTime.clone();
+    }
+
+    private Calendar getEndTime() {
+        return endTime;
+    }
 
     private void setStressLevel(int stressLevel) {
         this.stressLevel = stressLevel;
