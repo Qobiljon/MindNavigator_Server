@@ -1,5 +1,6 @@
 package kr.ac.inha.nsl.mindnavigator;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -162,5 +163,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void selectYear(View view) {
+    }
+
+    public void onNewEventClick(View view) {
+        Intent intent = new Intent(this, NewEventActivity.class);
+        startActivity(intent);
     }
 }

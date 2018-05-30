@@ -148,12 +148,29 @@
 
     </LinearLayout>
 
-    <GridLayout
-        android:id="@+id/event_grid"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="7"
-        android:orientation="horizontal"
-        android:rowCount="5" />
+        android:layout_height="match_parent">
+        <GridLayout
+            android:id="@+id/event_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="7"
+            android:orientation="horizontal"
+            android:rowCount="5" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:elevation="2dp"
+            android:onClick="onNewEventClick"
+            android:src="@drawable/img_add"/>
+    </FrameLayout>
+
+
 
 </LinearLayout>
