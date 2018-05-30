@@ -20,4 +20,5 @@
     <color name="slvl2_color">#dc5</color>
     <color name="slvl3_color">#fa3</color>
     <color name="slvl4_color">#a44</color>
+    <color name="textColor">#444</color>
 </resources>

@@ -13,9 +13,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:fontFamily="monospace"
-        android:paddingStart="5dp"
         android:paddingEnd="5dp"
+        android:paddingStart="5dp"
         android:text="@string/dummy"
+        android:textColor="@color/textColor"
         android:textSize="13dp"
         android:textStyle="bold"
         tools:ignore="SpUsage" />
