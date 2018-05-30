@@ -1,5 +1,6 @@
 package kr.ac.inha.nsl.mindnavigator;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -157,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void settingsClick(MenuItem item) {
+        DialogFragment editViewDialog = new DialogFragment();
+        editViewDialog.show(getFragmentManager(), "Events-list-dialog");
     }
 
     public void selectMonth(View view) {

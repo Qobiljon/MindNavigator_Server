@@ -1,6 +1,8 @@
 package kr.ac.inha.nsl.mindnavigator;
 
 import android.app.Activity;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.view.ViewGroup;
 import android.widget.TextView;

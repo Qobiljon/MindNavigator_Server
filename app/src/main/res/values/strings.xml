@@ -23,6 +23,7 @@
     <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="cell_date">Cell date</string>
 
     <string-array name="months_array">
         <item>Jan</item>
