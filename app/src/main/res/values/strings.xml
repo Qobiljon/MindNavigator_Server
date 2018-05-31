@@ -1,4 +1,15 @@
 <resources>
+    <!-- URLS for interacting with REST API server -->
+    <string name="url_user_register">http://165.246.43.162:4444/user_reg</string>
+    <string name="url_user_login">http://165.246.43.162:4444/user_lgn</string>
+    <string name="url_event_create">http://165.246.43.162:4444/event_crt</string>
+    <string name="url_event_edit">http://165.246.43.162:4444/event_edt</string>
+    <string name="url_event_delete">http://165.246.43.162:4444/event_del</string>
+    <string name="url_intervention_create">http://165.246.43.162:4444/interv_crt</string>
+    <string name="url_interv_fetch_system">http://165.246.43.162:4444/interv_syst</string>
+    <string name="url_interv_fetch_peer">http://165.246.43.162:4444/interv_peer</string>
+
+
     <string name="app_name">Mind-Navigator application</string>
     <string name="month">Month</string>
     <string name="year">Year</string>

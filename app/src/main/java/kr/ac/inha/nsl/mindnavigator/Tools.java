@@ -13,6 +13,11 @@ import java.util.Calendar;
 
 public class Tools {
     // region Variables
+    static final short
+            RES_OK = 0,
+            RES_SRV_ERR = -1,
+            RES_FAIL = 1;
+
     private static int cellWidth, cellHeight;
     // endregion
 
