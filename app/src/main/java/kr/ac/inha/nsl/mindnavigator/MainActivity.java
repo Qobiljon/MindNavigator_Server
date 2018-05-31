@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         startTime.set(Calendar.MINUTE, 0);
         endTime.set(Calendar.MINUTE, 30);
-        new Event("UCL final match", 3, startTime, endTime);
+        new Event("UCL final match", 2, startTime, endTime);
 
         startTime.add(Calendar.HOUR, 1);
         endTime.add(Calendar.HOUR, 1);

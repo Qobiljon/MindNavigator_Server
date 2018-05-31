@@ -23,9 +23,15 @@
     <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
-    <string name="low">LOW</string>
-    <string name="high">HIGH</string>
+    <string name="low">Not at all</string>
+    <string name="high">Extremelly stressed</string>
+    <string name="normal">Normal</string>
     <string name="btn_close">Close</string>
+    <string name="more">More</string>
+    <string name="intervention_method">Intervention method</string>
+    <string name="self">self</string>
+    <string name="system">system</string>
+    <string name="peer">peer</string>
 
     <string-array name="months_array">
         <item>Jan</item>

@@ -1,5 +1,6 @@
 package kr.ac.inha.nsl.mindnavigator;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +39,7 @@ public class EventActivity extends AppCompatActivity {
     private void init() {
         //region Assign UI variables
         eventTitle = findViewById(R.id.txt_event_title);
-        eventNote = findViewById(R.id.txt_event_note);
+        eventNote = findViewById(R.id.txt_stress_cause);
         startDate = findViewById(R.id.txt_event_start_date);
         startTime = findViewById(R.id.txt_event_start_time);
         endDate = findViewById(R.id.txt_event_end_date);
@@ -68,16 +70,6 @@ public class EventActivity extends AppCompatActivity {
                         stressLvl.getProgressDrawable().setColorFilter(slvl2Col, PorterDuff.Mode.SRC_IN);
                         stressLvl.getThumb().setColorFilter(slvl2Col, PorterDuff.Mode.SRC_IN);
                         break;
-                    case 3:
-                        int slvl3Col = ResourcesCompat.getColor(getResources(), R.color.slvl3_color, null);
-                        stressLvl.getProgressDrawable().setColorFilter(slvl3Col, PorterDuff.Mode.SRC_IN);
-                        stressLvl.getThumb().setColorFilter(slvl3Col, PorterDuff.Mode.SRC_IN);
-                        break;
-                    case 4:
-                        int slvl4Col = ResourcesCompat.getColor(getResources(), R.color.slvl4_color, null);
-                        stressLvl.getProgressDrawable().setColorFilter(slvl4Col, PorterDuff.Mode.SRC_IN);
-                        stressLvl.getThumb().setColorFilter(slvl4Col, PorterDuff.Mode.SRC_IN);
-                        break;
                     default:
                         break;
                 }
@@ -91,19 +83,32 @@ public class EventActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast,
-                        (ViewGroup) findViewById(R.id.toast_layout_root));
-
-                ImageView image = layout.findViewById(R.id.image);
-                image.setImageResource(R.drawable.ic_launcher_foreground);
-
-                Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.setView(layout);
-                toast.show();
             }
         });
+    }
+
+    public void moreOptionsClick(View view) {
+        LinearLayout btnMore = findViewById(R.id.btn_more_layout);
+        LinearLayout moreOptLayout = findViewById(R.id.more_options_layout);
+        btnMore.setVisibility(View.GONE);
+        moreOptLayout.setVisibility(View.VISIBLE);
+    }
+
+    public void stressLvlMoreClick(View view) {
+        LinearLayout moreStressLvl = findViewById(R.id.stress_lvl_more);
+
+        if (moreStressLvl.getVisibility() == View.VISIBLE) {
+            moreStressLvl.setVisibility(View.GONE);
+        } else
+            moreStressLvl.setVisibility(View.VISIBLE);
+    }
+
+    public void cancelClick(View view) {
+        finish();
+    }
+
+    public void interVentionsClick(View view) {
+        Intent intent = new Intent(this, InterventionsActivity.class);
+        startActivity(intent);
     }
 }

@@ -78,8 +78,6 @@ class Event implements Parcelable {
         stressColors[0] = activity.getColor(R.color.slvl0_color);
         stressColors[1] = activity.getColor(R.color.slvl1_color);
         stressColors[2] = activity.getColor(R.color.slvl2_color);
-        stressColors[3] = activity.getColor(R.color.slvl3_color);
-        stressColors[4] = activity.getColor(R.color.slvl4_color);
 
         events.clear();
     }
@@ -112,7 +110,7 @@ class Event implements Parcelable {
 
     //region Variables
     @ColorInt
-    private static int[] stressColors = new int[5];
+    private static int[] stressColors = new int[3];
     private static ArrayList<Event> events = new ArrayList<>();
 
     private long id;
