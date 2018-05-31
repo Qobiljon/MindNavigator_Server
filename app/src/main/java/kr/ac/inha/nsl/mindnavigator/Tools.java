@@ -1,6 +1,8 @@
 package kr.ac.inha.nsl.mindnavigator;
 
 import android.app.Activity;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -38,7 +40,7 @@ public class Tools {
     }
 }
 
-class Event {
+class Event implements Parcelable {
     Event(String title, int stressLevel, Calendar startTime, Calendar endTime) {
         setTitle(title);
         setStressLevel(stressLevel);
@@ -48,6 +50,29 @@ class Event {
 
         events.add(this);
     }
+
+    private Event(Parcel in) {
+        startTime = Calendar.getInstance();
+        endTime = Calendar.getInstance();
+
+        id = in.readLong();
+        startTime.setTimeInMillis(in.readLong());
+        endTime.setTimeInMillis(in.readLong());
+        stressLevel = in.readInt();
+        title = in.readString();
+    }
+
+    public static final Creator<Event> CREATOR = new Creator<Event>() {
+        @Override
+        public Event createFromParcel(Parcel in) {
+            return new Event(in);
+        }
+
+        @Override
+        public Event[] newArray(int size) {
+            return new Event[size];
+        }
+    };
 
     public static void init(Activity activity) {
         stressColors[0] = activity.getColor(R.color.slvl0_color);
@@ -121,7 +146,7 @@ class Event {
         this.stressLevel = stressLevel;
     }
 
-    public int getStressLevel(){
+    public int getStressLevel() {
         return stressLevel;
     }
 
@@ -129,6 +154,7 @@ class Event {
         this.title = title;
     }
 
+    @SuppressWarnings("unused")
     public long getEventId() {
         return id;
     }
@@ -139,5 +165,19 @@ class Event {
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeLong(startTime.getTimeInMillis());
+        dest.writeLong(endTime.getTimeInMillis());
+        dest.writeInt(stressLevel);
+        dest.writeString(title);
     }
 }

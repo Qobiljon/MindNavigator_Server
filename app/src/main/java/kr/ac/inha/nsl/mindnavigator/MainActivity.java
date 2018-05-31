@@ -45,7 +45,10 @@ public class MainActivity extends AppCompatActivity {
                 ft.remove(prev);
             }
             ft.addToBackStack(null);
-            DialogFragment dialogFragment = new EventsListDialog(MainActivity.this, selectedDay);
+            Bundle args = new Bundle();
+            args.putLong("selectedDayMillis", selectedDay.getTimeInMillis());
+            DialogFragment dialogFragment = new EventsListDialog();
+            dialogFragment.setArguments(args);
             dialogFragment.show(ft, "dialog");
 
         }
