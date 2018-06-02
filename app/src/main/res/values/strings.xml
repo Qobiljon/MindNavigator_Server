@@ -1,0 +1,61 @@
+<resources>
+    <!-- URLS for interacting with REST API server -->
+    <string name="url_user_register">http://165.246.43.162:4444/user_reg</string>
+    <string name="url_user_login">http://165.246.43.162:4444/user_lgn</string>
+    <string name="url_event_create">http://165.246.43.162:4444/event_crt</string>
+    <string name="url_event_edit">http://165.246.43.162:4444/event_edt</string>
+    <string name="url_event_delete">http://165.246.43.162:4444/event_del</string>
+    <string name="url_intervention_create">http://165.246.43.162:4444/interv_crt</string>
+    <string name="url_interv_fetch_system">http://165.246.43.162:4444/interv_syst</string>
+    <string name="url_interv_fetch_peer">http://165.246.43.162:4444/interv_peer</string>
+
+
+    <string name="app_name">Mind-Navigator application</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="previous_month">Previous month</string>
+    <string name="next_month_arrow">Next month arrow</string>
+    <string name="sunday">Sun</string>
+    <string name="monday">Mon</string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sat</string>
+    <string name="dummy">dummy</string>
+    <string name="today">Today</string>
+    <string name="settings">Settings</string>
+    <string name="event_title">Event title</string>
+    <string name="event_start_time">Start time</string>
+    <string name="event_end_time">End time</string>
+    <string name="stress_lvl">Stress level</string>
+    <string name="event_note">Event note (optional)</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="low">Not at all</string>
+    <string name="high">Extremelly stressed</string>
+    <string name="normal">Normal</string>
+    <string name="btn_close">Close</string>
+    <string name="more">More</string>
+    <string name="intervention_method">Intervention method</string>
+    <string name="self">self</string>
+    <string name="system">system</string>
+    <string name="peer">peer</string>
+
+    <string-array name="months_array">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+</resources>
