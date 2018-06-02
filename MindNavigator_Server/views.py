@@ -2,7 +2,7 @@ import json
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response as Res
-from MindNavigator_Server.models import User, Event, Intervention, InterventionManager
+from MindNavigator_Server.models import User, Event, Intervention, InterventionManager, Evaluation, Feedback
 
 # region Constants
 RES_SUCCESS = 0
@@ -117,7 +117,7 @@ def handle_intervention_create(request):
 
 
 @api_view(['POST'])
-def handle_system_interv_get(request):
+def handle_system_intervention_get(request):
     json_body = json.loads(request.body.decode('utf-8'))
     if 'username' in json_body and 'password' in json_body:
         if is_user_valid(json_body['username'], json_body['password']):
@@ -132,7 +132,7 @@ def handle_system_interv_get(request):
 
 
 @api_view(['POST'])
-def handle_peer_interv_get(request):
+def handle_peer_intervention_get(request):
     json_body = json.loads(request.body.decode('utf-8'))
     if 'username' in json_body and 'password' in json_body:
         if is_user_valid(json_body['username'], json_body['password']):
@@ -144,3 +144,45 @@ def handle_peer_interv_get(request):
             return Res(data={'result': RES_FAILURE})
     else:
         return Res(data={'result': RES_BAD_REQUEST, 'reason': 'Username, password, or event_id was not passed as a POST argument!'})
+
+
+@api_view(['POST'])
+def handle_evaluation_submit(request):
+    json_body = json.loads(request.body.decode('utf-8'))
+    if 'username' in json_body and 'password' in json_body and 'eventId' in json_body and 'interventionName' in json_body and 'startTime' in json_body and 'endTime' in json_body \
+            and 'eventDone' in json_body and 'interventionDone' in json_body and 'interventionDoneBefore' in json_body and 'recommend' in json_body:
+        if is_user_valid(json_body['username'], json_body['password']):
+            Evaluation.objects.create_evaluation(
+                user=User.objects.get(username=json_body['username']),
+                event_id=json_body['eventId'],
+                intervention_name=json_body['interventionName'],
+                start_time=json_body['startTime'],
+                end_time=json_body['endTime'],
+                event_done=json_body['eventDone'],
+                intervention_done=json_body['interventionDone'],
+                intervention_done_before=json_body['interventionDoneBefore'],
+                recommend=json_body['recommend']
+            ).save()
+            return Res(data={'result': RES_SUCCESS})
+        else:
+            return Res(data={'result': RES_FAILURE})
+    else:
+        return Res(data={'result': RES_BAD_REQUEST, 'reason': 'Some arguments are not present to complete this POST request!'})
+
+
+@api_view(['POST'])
+def handle_feedback_submit(request):
+    json_body = json.loads(request.body.decode('utf-8'))
+    if 'username' in json_body and 'password' in json_body and 'startTime' in json_body and 'endTime' in json_body and 'done' in json_body:
+        if is_user_valid(json_body['username'], json_body['password']):
+            Feedback.objects.create_feedback(
+                user=User.objects.get(username=json_body['username']),
+                start_time=json_body['startTime'],
+                end_time=json_body['endTime'],
+                done=json_body['done']
+            ).save()
+            return Res(data={'result': RES_SUCCESS})
+        else:
+            return Res(data={'result': RES_FAILURE})
+    else:
+        return Res(data={'result': RES_BAD_REQUEST, 'reason': 'Some arguments are not present to complete this POST request!'})

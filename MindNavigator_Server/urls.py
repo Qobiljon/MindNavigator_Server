@@ -30,8 +30,10 @@ urlpatterns = [
     url('event_del$', views.handle_event_delete),
     url('event_del$', views.handle_event_delete),
     url('interv_crt$', views.handle_intervention_create),
-    url('interv_syst$', views.handle_system_interv_get),
-    url('interv_peer$', views.handle_peer_interv_get),
+    url('interv_syst$', views.handle_system_intervention_get),
+    url('interv_peer$', views.handle_peer_intervention_get),
+    url('eval_subm$', views.handle_evaluation_submit),
+    url('feedb_subm$', views.handle_feedback_submit),
 ]
 
 if Intervention.objects.all().count() == 0:

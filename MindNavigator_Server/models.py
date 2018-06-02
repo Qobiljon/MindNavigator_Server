@@ -20,11 +20,15 @@ class EventManager(models.Manager):
 
 class Event(models.Model):
     eventId = models.BigIntegerField(primary_key=True)
-    owner = models.OneToOneField(to=User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=128, default='unnamed')
+    owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=128)
     stressLevel = models.PositiveSmallIntegerField()
     startTime = models.BigIntegerField()
     endTime = models.BigIntegerField()
+    intervention = models.CharField(max_length=128)
+    stressType = models.CharField(max_length=32)
+    stressCause = models.CharField(max_length=128)
+    isShared = models.BooleanField()
     objects = EventManager()
 
 
@@ -40,3 +44,47 @@ class Intervention(models.Model):
     name = models.CharField(max_length=128, primary_key=True)
     interventionType = models.CharField(max_length=6)
     objects = InterventionManager()
+
+
+class EvaluationManager(models.Manager):
+    def create_evaluation(self, user, event_id, intervention_name, start_time, end_time, event_done, intervention_done, intervention_done_before, recommend):
+        return self.create(
+            user=user,
+            eventId=event_id,
+            interventionName=intervention_name,
+            startTime=start_time,
+            endTime=end_time,
+            eventDone=event_done,
+            interventionDone=intervention_done,
+            interventionDoneBefore=intervention_done_before,
+            recommend=recommend
+        )
+
+
+class Evaluation(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    eventId = models.ForeignKey(Event, on_delete=models.CASCADE)
+    interventionName = models.CharField(max_length=128)
+    startTime = models.BigIntegerField()
+    endTime = models.BigIntegerField()
+    eventDone = models.BooleanField()
+    interventionDone = models.BooleanField()
+    interventionDoneBefore = models.BooleanField()
+    recommend = models.BooleanField()
+    objects = EvaluationManager()
+
+
+class FeedbackManager(models.Manager):
+    def create_feedback(self, user, start_time, end_time, done):
+        return self.create(user=user, startTime=start_time, endTime=end_time, done=done)
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    eventTitle = models.CharField(max_length=128)
+    startTime = models.BigIntegerField()
+    endTime = models.BigIntegerField()
+    stressLevel = models.IntegerField()
+    stressLevelSunday = models.IntegerField()
+    reason = models.CharField(max_length=128)
+    objects = FeedbackManager()

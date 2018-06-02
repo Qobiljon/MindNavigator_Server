@@ -8,6 +8,15 @@ Return value 'result' is an integer field, and is always returned in a json obje
 Return values are: -1(bad request), 0(success), 1(failure)
 
 
+# -*-*-*-*-*-*-*-*-*-*-*-*- Template API (GET, POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+Description:
+API URL:                        http://165.246.43.162:4444/~
+Required json header fields:    Content-Type (application/json)
+Required json body fields:
+Additional return fields:
+
+
+
 1 -*-*-*-*-*-*-*-*-*-*-*-*- User Register API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
 Description:                    Register a new user in a system
 API URL:                        http://165.246.43.162:4444/user_reg
@@ -88,9 +97,33 @@ Required json body fields:      username
 Additional return fields:       names (string array)
 
 
-# -*-*-*-*-*-*-*-*-*-*-*-*- Template API (GET, POST): -*-*-*-*-*-*-*-*-*-*-*-*-
-Description:
-API URL:                        http://165.246.43.162:4444/~
+9 -*-*-*-*-*-*-*-*-*-*-*-*- Evaluation Submit API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+Description:                    Fetch peer interventions from a system
+API URL:                        http://165.246.43.162:4444/eval_subm
 Required json header fields:    Content-Type (application/json)
-Required json body fields:
-Additional return fields:
+Required json body fields:      username
+                                password
+                                eventId
+                                interventionName
+                                startTime
+                                endTime
+                                eventDone
+                                interventionDone
+                                interventionDoneBefore
+                                recommend
+Additional return fields:       names (string array)
+
+
+10 -*-*-*-*-*-*-*-*-*-*-*-*- Feedback Submit API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+Description:                    Fetch peer interventions from a system
+API URL:                        http://165.246.43.162:4444/feedb_subm
+Required json header fields:    Content-Type (application/json)
+Required json body fields:      username
+                                password
+                                eventTitle
+                                startTime
+                                endTime
+                                stressLevel
+                                stressLevelSunday
+                                reason
+Additional return fields:       names (string array)
