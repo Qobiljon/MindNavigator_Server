@@ -14,11 +14,27 @@ class User(models.Model):
 
 
 class EventManager(models.Manager):
-    def create_event(self, event_id, owner, title, stress_level, start_time, end_time):
-        return self.create(eventId=event_id, owner=owner, title=title, stressLevel=stress_level, startTime=start_time, endTime=end_time)
+    def create_event(self, event_id, owner, title, stress_level, start_time, end_time, intervention, stress_type, stress_cause, is_shared, repeat_mode):
+        return self.create(
+            eventId=event_id,
+            owner=owner,
+            title=title,
+            stressLevel=stress_level,
+            startTime=start_time,
+            endTime=end_time,
+            intervention=intervention,
+            stressType=stress_type,
+            stressCause=stress_cause,
+            isShared=is_shared,
+            repeatMode=repeat_mode
+        )
 
 
 class Event(models.Model):
+    NO_REPEAT = 0
+    REPEAT_EVERYDAY = 1
+    REPEAT_WEEKLY = 2
+
     eventId = models.BigIntegerField(primary_key=True)
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
@@ -29,6 +45,7 @@ class Event(models.Model):
     stressType = models.CharField(max_length=32)
     stressCause = models.CharField(max_length=128)
     isShared = models.BooleanField()
+    repeatMode = models.SmallIntegerField()
     objects = EventManager()
 
 
