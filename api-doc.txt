@@ -46,6 +46,12 @@ Required json body fields:      username
                                 title (string, maxlen=128)
                                 startTime (long)
                                 endTime (long)
+                                intervention (string, maxlen=128)
+                                interventionReminder (short)
+                                stressType (string, maxlen=32)
+                                stressCause (string, maxlen=128)
+                                isShared (boolean)
+                                repeatMode (short)
 
 
 4 -*-*-*-*-*-*-*-*-*-*-*-*- Event Edit API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
@@ -59,6 +65,12 @@ Required json body fields:      username
                                 title (string, maxlen=128, optional)
                                 startTime (long, optional)
                                 endTime (long, optional)
+                                intervention (string, maxlen=128, optional)
+                                interventionReminder (short, optional)
+                                stressType (string, maxlen=32, optional)
+                                stressCause (string, maxlen=128, optional)
+                                isShared (boolean, optional)
+                                repeatMode (short, optional)
 
 
 5 -*-*-*-*-*-*-*-*-*-*-*-*- Event Delete API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-

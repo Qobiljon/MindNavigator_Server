@@ -54,7 +54,8 @@ def handle_event_create(request):
     json_body = json.loads(request.body.decode('utf-8'))
     if 'username' in json_body and 'password' in json_body and 'event_id' in json_body and 'title' in json_body \
             and 'stressLevel' in json_body and 'startTime' in json_body and 'endTime' in json_body and 'intervention' in json_body \
-            and 'stressType' in json_body and 'stressCause' in json_body and 'isShared' in json_body and 'repeatMode' in json_body:
+            and 'interventionReminder' in json_body and 'stressType' in json_body and 'stressCause' in json_body and 'isShared' in json_body \
+            and 'repeatMode' in json_body:
         if is_user_valid(json_body['username'], json_body['password']) and not Event.objects.all().filter(eventId=json_body['event_id']).exists():
             Event.objects.create_event(
                 event_id=json_body['event_id'],
@@ -64,6 +65,7 @@ def handle_event_create(request):
                 start_time=json_body['startTime'],
                 end_time=json_body['endTime'],
                 intervention=json_body['intervention'],
+                interv_reminder=json_body['interventionReminder'],
                 stress_type=json_body['stressType'],
                 stress_cause=json_body['stressCause'],
                 is_shared=json_body['isShared'],
@@ -92,6 +94,8 @@ def handle_event_edit(request):
                 event.endTime = json_body['endTime']
             if 'intervention' in json_body:
                 event.intervention = json_body['intervention']
+            if 'interventionReminder' in json_body:
+                event.intervention = json_body['interventionReminder']
             if 'stressType' in json_body:
                 event.stressType = json_body['stressType']
             if 'stressCause' in json_body:
