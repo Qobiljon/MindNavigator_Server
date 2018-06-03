@@ -157,14 +157,18 @@ def handle_events_fetch(request):
         _from = json_body['period_from']
         _till = json_body['period_till']
         result = {}
+        done_ids = []
         array = []
 
         for event in Event.objects.all().filter(owner=user, startTime__range=(_from, _till - 1)):
             array.append(event.__json__())
+            done_ids.append(event.eventId)
         for event in Event.objects.all().filter(owner=user, endTime__range=(_from + 1, _till)):
-            array.append(event.__json__())
+            if event.eventId not in done_ids:
+                array.append(event.__json__())
         for event in Event.objects.all().filter(owner=user, startTime__lte=_from, endTime__gte=_till):
-            array.append(event.__json__())
+            if event.eventId not in done_ids:
+                array.append(event.__json__())
 
         result['result'] = RES_SUCCESS
         result['array'] = array
