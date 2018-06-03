@@ -29,6 +29,7 @@ urlpatterns = [
     url('event_edt$', views.handle_event_edit),
     url('event_del$', views.handle_event_delete),
     url('event_del$', views.handle_event_delete),
+    url('events_fetch$', views.handle_events_fetch),
     url('interv_crt$', views.handle_intervention_create),
     url('interv_syst$', views.handle_system_intervention_get),
     url('interv_peer$', views.handle_peer_intervention_get),

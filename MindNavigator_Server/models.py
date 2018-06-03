@@ -23,7 +23,7 @@ class EventManager(models.Manager):
             startTime=start_time,
             endTime=end_time,
             intervention=intervention,
-            intervReminder=interv_reminder,
+            interventionReminder=interv_reminder,
             stressType=stress_type,
             stressCause=stress_cause,
             isShared=is_shared,

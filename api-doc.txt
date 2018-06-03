@@ -139,3 +139,11 @@ Required json body fields:      username
                                 stressLevelSunday
                                 reason
 Additional return fields:       names (string array)
+
+
+11 -*-*-*-*-*-*-*-*-*-*-*-*- Fetch Events API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+Description:                    Fetch events in a specified period
+API URL:                        http://165.246.43.162:4444/events_fetch
+Required json header fields:    Content-Type (application/json)
+Required json body fields:      username, password, period_from, period_till
+Additional return fields:

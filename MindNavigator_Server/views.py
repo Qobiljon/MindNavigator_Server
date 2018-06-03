@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response as Res
@@ -18,6 +19,30 @@ def is_user_valid(username, password):
         user = User.objects.get(username=username)
         return user.password == password
     return False
+
+
+def time_add(_time, _add):
+    time = datetime.datetime(
+        year=int(_time / 1000000),
+        month=int(_time / 10000) % 100,
+        day=int(_time / 100) % 100,
+        hour=int(_time % 100)
+    )
+    if _add >= 0:
+        time += datetime.timedelta(hours=int(_add / 60))
+    else:
+        time -= datetime.timedelta(hours=int(-_add / 60))
+    return int("%02d%02d%02d%02d" % (time.year % 100, time.month, time.day, time.hour))
+
+
+def overlaps(user, start_time, end_time):
+    # lvl1 - start-time check
+    if Event.objects.all().filter(owner=user, startTime__range=(start_time, end_time - 1)).exists():
+        return True
+    elif Event.objects.all().filter(owner=user, endTime__range=(start_time + 1, end_time)).exists():
+        return True
+    elif Event.objects.all().filter(owner=user, startTime__lte=start_time, endTime__gte=end_time).exists():
+        return True
 
 
 @api_view(['POST'])
@@ -56,7 +81,8 @@ def handle_event_create(request):
             and 'stressLevel' in json_body and 'startTime' in json_body and 'endTime' in json_body and 'intervention' in json_body \
             and 'interventionReminder' in json_body and 'stressType' in json_body and 'stressCause' in json_body and 'isShared' in json_body \
             and 'repeatMode' in json_body:
-        if is_user_valid(json_body['username'], json_body['password']) and not Event.objects.all().filter(eventId=json_body['event_id']).exists():
+        if is_user_valid(json_body['username'], json_body['password']) and not Event.objects.all().filter(eventId=json_body['event_id']).exists() \
+                and not overlaps(User.objects.get(username=json_body['username']), start_time=json_body['startTime'], end_time=json_body['endTime']):
             Event.objects.create_event(
                 event_id=json_body['event_id'],
                 owner=User.objects.get(username=json_body['username']),
@@ -75,7 +101,7 @@ def handle_event_create(request):
         else:
             return Res(data={'result': RES_FAILURE})
     else:
-        return Res(data={'result': RES_BAD_REQUEST, 'reason': 'Username, password, or event_id was not passed as a POST argument!'})
+        return Res(data={'result': RES_BAD_REQUEST, 'reason': 'Some arguments are missing in the POST request!'})
 
 
 @api_view(['POST'])
@@ -88,9 +114,8 @@ def handle_event_edit(request):
                 event.stressLevel = json_body['stressLevel']
             if 'title' in json_body:
                 event.title = json_body['title']
-            if 'startTime' in json_body:
+            if 'startTime' in json_body and 'end_time' in json_body and not overlaps(User.objects.get(username=json_body['username']), start_time=json_body['startTime'], end_time=json_body['endTime']):
                 event.startTime = json_body['startTime']
-            if 'endTime' in json_body:
                 event.endTime = json_body['endTime']
             if 'intervention' in json_body:
                 event.intervention = json_body['intervention']
@@ -122,6 +147,29 @@ def handle_event_delete(request):
             return Res(data={'result': RES_FAILURE})
     else:
         return Res(data={'result': RES_BAD_REQUEST, 'reason': 'Username, password, or event_id was not passed as a POST argument!'})
+
+
+@api_view(['POST'])
+def handle_events_fetch(request):
+    json_body = json.loads(request.body.decode('utf-8'))
+    if 'username' in json_body and 'password' in json_body and is_user_valid(json_body['username'], json_body['password']):
+        user = User.objects.get(username=json_body['username'])
+        _from = json_body['period_from']
+        _till = json_body['period_till']
+        result = {}
+        array = []
+
+        for event in Event.objects.all().filter(owner=user, startTime__range=(_from, _till - 1)):
+            array.append(event.__json__())
+        for event in Event.objects.all().filter(owner=user, endTime__range=(_from + 1, _till)):
+            array.append(event.__json__())
+        for event in Event.objects.all().filter(owner=user, startTime__lte=_from, endTime__gte=_till):
+            array.append(event.__json__())
+
+        result['result'] = RES_SUCCESS
+        result['array'] = array
+        return Res(data=result)
+    return Res(data={'result': RES_BAD_REQUEST})
 
 
 @api_view(['POST'])
