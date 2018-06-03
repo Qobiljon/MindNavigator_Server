@@ -14,7 +14,7 @@ class User(models.Model):
 
 
 class EventManager(models.Manager):
-    def create_event(self, event_id, owner, title, stress_level, start_time, end_time, intervention, interv_reminder, stress_type, stress_cause, is_shared, repeat_mode):
+    def create_event(self, event_id, owner, title, stress_level, start_time, end_time, intervention, interv_reminder, stress_type, stress_cause, repeat_mode):
         return self.create(
             eventId=event_id,
             owner=owner,
@@ -26,7 +26,6 @@ class EventManager(models.Manager):
             interventionReminder=interv_reminder,
             stressType=stress_type,
             stressCause=stress_cause,
-            isShared=is_shared,
             repeatMode=repeat_mode
         )
 
