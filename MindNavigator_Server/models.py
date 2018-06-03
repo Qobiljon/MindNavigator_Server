@@ -50,6 +50,21 @@ class Event(models.Model):
     repeatMode = models.SmallIntegerField()
     objects = EventManager()
 
+    def __json__(self):
+        return {
+            'eventId': self.eventId,
+            'title': self.title,
+            'stressLevel': self.stressLevel,
+            'startTime': self.startTime,
+            'endTime': self.endTime,
+            'intervention': self.intervention,
+            'interventionReminder': self.interventionReminder,
+            'stressType': self.stressType,
+            'stressCause': self.stressCause,
+            'isShared': self.isShared,
+            'repeatMode': self.repeatMode
+        }
+
 
 class InterventionManager(models.Manager):
     PEER = 'peer'

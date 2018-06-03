@@ -82,7 +82,15 @@ Required json body fields:      username
                                 even_id
 
 
-6 -*-*-*-*-*-*-*-*-*-*-*-*- Intervention Create API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+6 -*-*-*-*-*-*-*-*-*-*-*-*- Fetch Events API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+Description:                    Fetch events in a specified period
+API URL:                        http://165.246.43.162:4444/events_fetch
+Required json header fields:    Content-Type (application/json)
+Required json body fields:      username, password, period_from, period_till
+Additional return fields:
+
+
+7 -*-*-*-*-*-*-*-*-*-*-*-*- Intervention Create API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
 Description:                    Create a new intervention in a system
 API URL:                        http://165.246.43.162:4444/interv_crt
 Required json header fields:    Content-Type (application/json)
@@ -91,7 +99,7 @@ Required json body fields:      username
                                 interventionName (maxlen=128)
 
 
-7 -*-*-*-*-*-*-*-*-*-*-*-*- Fetch System Interventions API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+8 -*-*-*-*-*-*-*-*-*-*-*-*- Fetch System Interventions API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
 Description:                    Fetch system interventions from a system
 API URL:                        http://165.246.43.162:4444/interv_syst
 Required json header fields:    Content-Type (application/json)
@@ -100,7 +108,7 @@ Required json body fields:      username
 Additional return fields:       names (string array)
 
 
-8 -*-*-*-*-*-*-*-*-*-*-*-*- Fetch Peer Interventions API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+9 -*-*-*-*-*-*-*-*-*-*-*-*- Fetch Peer Interventions API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
 Description:                    Fetch peer interventions from a system
 API URL:                        http://165.246.43.162:4444/interv_peer
 Required json header fields:    Content-Type (application/json)
@@ -109,7 +117,7 @@ Required json body fields:      username
 Additional return fields:       names (string array)
 
 
-9 -*-*-*-*-*-*-*-*-*-*-*-*- Evaluation Submit API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+10 -*-*-*-*-*-*-*-*-*-*-*-*- Evaluation Submit API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
 Description:                    Fetch peer interventions from a system
 API URL:                        http://165.246.43.162:4444/eval_subm
 Required json header fields:    Content-Type (application/json)
@@ -126,7 +134,7 @@ Required json body fields:      username
 Additional return fields:       names (string array)
 
 
-10 -*-*-*-*-*-*-*-*-*-*-*-*- Feedback Submit API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
+11 -*-*-*-*-*-*-*-*-*-*-*-*- Feedback Submit API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
 Description:                    Fetch peer interventions from a system
 API URL:                        http://165.246.43.162:4444/feedb_subm
 Required json header fields:    Content-Type (application/json)
@@ -139,11 +147,3 @@ Required json body fields:      username
                                 stressLevelSunday
                                 reason
 Additional return fields:       names (string array)
-
-
-11 -*-*-*-*-*-*-*-*-*-*-*-*- Fetch Events API (POST): -*-*-*-*-*-*-*-*-*-*-*-*-
-Description:                    Fetch events in a specified period
-API URL:                        http://165.246.43.162:4444/events_fetch
-Required json header fields:    Content-Type (application/json)
-Required json body fields:      username, password, period_from, period_till
-Additional return fields:
