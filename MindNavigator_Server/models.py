@@ -46,7 +46,6 @@ class Event(models.Model):
     interventionReminder = models.SmallIntegerField(default=0)
     stressType = models.CharField(max_length=32)
     stressCause = models.CharField(max_length=128)
-    isShared = models.BooleanField()
     repeatMode = models.SmallIntegerField()
     objects = EventManager()
 
@@ -61,7 +60,6 @@ class Event(models.Model):
             'interventionReminder': self.interventionReminder,
             'stressType': self.stressType,
             'stressCause': self.stressCause,
-            'isShared': self.isShared,
             'repeatMode': self.repeatMode
         }
 
